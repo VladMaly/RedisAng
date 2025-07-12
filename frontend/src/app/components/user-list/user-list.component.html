@@ -1,0 +1,15 @@
+<div class="user-list">
+  <h3>Online Users ({{ users.length + 1 }})</h3>
+  <ul>
+    <li class="current-user">
+      <span class="user-icon">👤</span>
+      <span class="username">You</span>
+      <span class="status-indicator"></span>
+    </li>
+    <li *ngFor="let user of users">
+      <span class="user-icon">👤</span>
+      <span class="username">{{ user.username }}</span>
+      <span class="status-indicator"></span>
+    </li>
+  </ul>
+</div>

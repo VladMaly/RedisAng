@@ -1,0 +1,13 @@
+<div class="message" [class.own-message]="isOwn">
+  <div class="message-bubble">
+    <div class="message-header" *ngIf="!isOwn">
+      <span class="username">{{ message.username }}</span>
+    </div>
+    <div class="message-content">
+      {{ message.content }}
+    </div>
+    <div class="message-time">
+      {{ formatTime(message.timestamp) }}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,113 @@
+<div class="login-wrapper">
+  <div class="login-background">
+    <div class="gradient-sphere sphere-1"></div>
+    <div class="gradient-sphere sphere-2"></div>
+    <div class="gradient-sphere sphere-3"></div>
+  </div>
+  
+  <div class="login-container">
+    <div class="login-card glassmorphism fade-in">
+      <div class="logo-section">
+        <div class="logo">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <rect x="4" y="4" width="40" height="40" rx="8" stroke="url(#gradient)" stroke-width="2"/>
+            <path d="M16 24C16 19.5817 19.5817 16 24 16C28.4183 16 32 19.5817 32 24C32 28.4183 28.4183 32 24 32" stroke="url(#gradient)" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="24" cy="24" r="3" fill="url(#gradient)"/>
+            <defs>
+              <linearGradient id="gradient" x1="0" y1="0" x2="48" y2="48">
+                <stop stop-color="#2563eb"/>
+                <stop offset="1" stop-color="#06b6d4"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <h1>Professional Chat</h1>
+        <p class="tagline">Secure Business Communication Platform</p>
+      </div>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+        <div class="form-group">
+          <label for="username" class="form-label">Username</label>
+          <div class="input-wrapper">
+            <svg class="input-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M10 10C12.7614 10 15 7.76142 15 5C15 2.23858 12.7614 0 10 0C7.23858 0 5 2.23858 5 5C5 7.76142 7.23858 10 10 10Z" fill="currentColor" opacity="0.4"/>
+              <path d="M10 12.5C4.47715 12.5 0 16.9772 0 22.5V23.75C0 24.4404 0.559644 25 1.25 25H18.75C19.4404 25 20 24.4404 20 23.75V22.5C20 16.9772 15.5228 12.5 10 12.5Z" fill="currentColor" opacity="0.4"/>
+            </svg>
+            <input 
+              type="text" 
+              id="username" 
+              formControlName="username" 
+              placeholder="Enter your username"
+              class="form-input"
+              autocomplete="username"
+            >
+          </div>
+          <div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched" class="error-message slide-in">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M8 0C3.58 0 0 3.58 0 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm1 13H7v-2h2v2zm0-4H7V3h2v6z" fill="currentColor"/>
+            </svg>
+            <span>Username must be at least 3 characters</span>
+          </div>
+        </div>
+
+        <button type="submit" [disabled]="loginForm.invalid" class="submit-button">
+          <span class="button-text">Join Chat Room</span>
+          <svg class="button-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M10 0L8.59 1.41L16.17 9H0V11H16.17L8.59 18.59L10 20L20 10L10 0Z" fill="currentColor"/>
+          </svg>
+        </button>
+      </form>
+
+      <div class="features">
+        <div class="feature">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM8 15L3 10L4.41 8.59L8 12.17L15.59 4.58L17 6L8 15Z" fill="currentColor" opacity="0.6"/>
+          </svg>
+          <span>End-to-end encryption</span>
+        </div>
+        <div class="feature">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M17 7H13V2C13 0.9 12.1 0 11 0H9C7.9 0 7 0.9 7 2V7H3C1.9 7 1 7.9 1 9V18C1 19.1 1.9 20 3 20H17C18.1 20 19 19.1 19 18V9C19 7.9 18.1 7 17 7ZM9 2H11V7H9V2ZM10 15C8.9 15 8 14.1 8 13C8 11.9 8.9 11 10 11C11.1 11 12 11.9 12 13C12 14.1 11.1 15 10 15Z" fill="currentColor" opacity="0.6"/>
+          </svg>
+          <span>Enterprise security</span>
+        </div>
+        <div class="feature">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M10 0C15.52 0 20 4.48 20 10C20 15.52 15.52 20 10 20C4.48 20 0 15.52 0 10C0 4.48 4.48 0 10 0ZM10 2C5.58 2 2 5.58 2 10C2 14.42 5.58 18 10 18C14.42 18 18 14.42 18 10C18 5.58 14.42 2 10 2ZM10 4C13.31 4 16 6.69 16 10C16 13.31 13.31 16 10 16V4Z" fill="currentColor" opacity="0.6"/>
+          </svg>
+          <span>Real-time sync</span>
+        </div>
+      </div>
+
+      <div class="social-login">
+        <p>Enterprise login options</p>
+        <div class="social-buttons">
+          <button type="button" class="social-button" title="Login with Microsoft">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <rect x="1" y="1" width="8" height="8" fill="#F25022"/>
+              <rect x="11" y="1" width="8" height="8" fill="#7FBA00"/>
+              <rect x="1" y="11" width="8" height="8" fill="#00A4EF"/>
+              <rect x="11" y="11" width="8" height="8" fill="#FFB900"/>
+            </svg>
+          </button>
+          <button type="button" class="social-button" title="Login with Google">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M18.9 10.2c0-.6-.1-1.2-.2-1.7H10v3.2h5c-.2 1.1-.9 2-1.9 2.6v2.2h3.1c1.8-1.7 2.8-4.1 2.8-6.3z" fill="#4285F4"/>
+              <path d="M10 19c2.4 0 4.5-.8 6-2.2l-3.1-2.2c-.8.6-1.9.9-3 .9-2.3 0-4.3-1.6-5-3.7H1.6v2.3C3.2 17.2 6.3 19 10 19z" fill="#34A853"/>
+              <path d="M5 11.8c-.2-.6-.3-1.2-.3-1.8s.1-1.2.3-1.8V5.9H1.6C.6 7.9 0 9.9 0 10s.6 2.1 1.6 4.1l3.4-2.3z" fill="#FBBC04"/>
+              <path d="M10 3.6c1.3 0 2.5.5 3.4 1.3l2.6-2.6C14.5.9 12.4 0 10 0 6.3 0 3.2 1.8 1.6 4.9L5 7.2c.7-2.1 2.7-3.6 5-3.6z" fill="#EA4335"/>
+            </svg>
+          </button>
+          <button type="button" class="social-button" title="Login with Slack">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M7.79 0C6.69 0 5.79 0.9 5.79 2C5.79 3.1 6.69 4 7.79 4H9.79V2C9.79 0.9 8.89 0 7.79 0Z" fill="#E01E5A"/>
+              <path d="M2 7.79C0.9 7.79 0 8.69 0 9.79C0 10.89 0.9 11.79 2 11.79H7.79V9.79C7.79 8.69 6.89 7.79 5.79 7.79H2Z" fill="#36C5F0"/>
+              <path d="M12.21 20C13.31 20 14.21 19.1 14.21 18C14.21 16.9 13.31 16 12.21 16H10.21V18C10.21 19.1 11.11 20 12.21 20Z" fill="#2EB67D"/>
+              <path d="M18 12.21C19.1 12.21 20 11.31 20 10.21C20 9.11 19.1 8.21 18 8.21H12.21V10.21C12.21 11.31 13.11 12.21 14.21 12.21H18Z" fill="#ECB22E"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

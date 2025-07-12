@@ -1,0 +1,91 @@
+<div class="chat-container">
+  <!-- Sound indicator -->
+  <div class="sound-indicator" [class.visible]="true" [class.active]="soundEnabled()" (click)="toggleSound()">
+    <svg *ngIf="soundEnabled()" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+      <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+    </svg>
+    <svg *ngIf="!soundEnabled()" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+      <line x1="23" y1="9" x2="17" y2="15"></line>
+      <line x1="17" y1="9" x2="23" y2="15"></line>
+    </svg>
+  </div>
+
+  <div class="chat-header">
+    <h2>Chat Room</h2>
+    <div class="header-actions">
+      <span class="connection-status" [class.connected]="isConnected()">
+        <span class="status-dot"></span>
+        {{ isConnected() ? 'Connected' : 'Disconnected' }}
+      </span>
+      <button (click)="logout()" class="btn-logout">Logout</button>
+    </div>
+  </div>
+
+  <div class="chat-body">
+    <div class="users-sidebar">
+      <app-user-list [users]="activeUsers()" [currentUserId]="currentUser.userId"></app-user-list>
+    </div>
+
+    <div class="messages-area">
+      <div class="messages-container" #messageContainer (scroll)="onScroll($event)">
+        <app-message 
+          *ngFor="let message of messages()" 
+          [message]="message" 
+          [isOwn]="message.userId === currentUser.userId">
+        </app-message>
+        
+        <div class="typing-indicator" *ngIf="getTypingUsers().length > 0">
+          <div class="typing-animation">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <span>{{ getTypingUsers().join(', ') }} {{ getTypingUsers().length === 1 ? 'is' : 'are' }} typing</span>
+        </div>
+      </div>
+
+      <!-- Scroll to bottom button -->
+      <button class="scroll-to-bottom" [class.visible]="showScrollButton()" (click)="scrollToBottom()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </button>
+
+      <!-- Emoji picker popup -->
+      <div class="emoji-picker-popup" *ngIf="showEmojiPicker()">
+        <div class="emoji-grid">
+          <button *ngFor="let emoji of emojis" class="emoji-button" (click)="addEmoji(emoji)">
+            {{ emoji }}
+          </button>
+        </div>
+      </div>
+
+      <div class="message-input-container">
+        <button class="emoji-picker-button" (click)="toggleEmojiPicker()" [disabled]="!isConnected()">
+          😊
+        </button>
+        <input 
+          type="text" 
+          [(ngModel)]="messageInput" 
+          (keyup.enter)="sendMessage()"
+          (keyup)="onTyping()"
+          placeholder="Type a message..."
+          class="message-input"
+          [disabled]="!isConnected()"
+        >
+        <button 
+          (click)="sendMessage()" 
+          class="send-button"
+          [disabled]="!messageInput.trim() || !isConnected()">
+          <span>Send</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+{
+  "name": "angular-chat-app",
+  "version": "1.0.0",
+  "description": "Angular chat application with Redis and WebSocket",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
+    "start:backend": "cd backend && npm start",
+    "start:frontend": "cd frontend && npm start",
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "dev": "npm run install:all && npm start"
+  },
+  "keywords": ["angular", "chat", "websocket", "redis"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
+}
